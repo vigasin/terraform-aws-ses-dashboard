@@ -103,13 +103,20 @@ AWS SES Email Dashboard.
         });
     }
     
+	function escapeHTML(s) { 
+		return s.replace(/&/g, '&amp;')
+				.replace(/"/g, '&quot;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;');
+	}
+
     function row(type,btype,bsubtype,sender,destination,diagcode,time,id) {
         var otr = "<tr>";
         var ftr = "</tr>";
         var oline = "<td>";
         var cline = "</td>";
 
-        return otr + oline + type + cline + oline + btype + cline + oline + bsubtype + cline + oline + sender + cline + oline + destination + cline + oline + diagcode + cline + oline + time + cline + oline + id + cline + ftr;
+        return otr + oline + type + cline + oline + btype + cline + oline + bsubtype + cline + oline + escapeHTML(sender) + cline + oline + escapeHTML(destination) + cline + oline + diagcode + cline + oline + time + cline + oline + id + cline + ftr;
     }
 
     //Start Receive message
